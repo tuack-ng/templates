@@ -1,3 +1,5 @@
+#set document(author: "Tuack-NG with NOI template")
+
 #let data = json("data.json")
 #let (problems,) = data
 #let time = (
