@@ -212,7 +212,7 @@
 
 #show math.equation: set text(font: "Latin Modern Math")
 
-#set table(stroke: 0.3pt)
+#set table(stroke: 0.3pt, inset: (top: 4.5pt, bottom: 4.5pt))
 
 #align(center)[
   #if data.title != "" {
@@ -350,6 +350,7 @@
     bottom: 2pt,
     top: if y == 0 { 2pt } else if y == 1 { 1.2pt } else { .4pt },
   ),
+  inset: (top: 5pt, bottom: 5pt),
   align: center + horizon,
 )
 
