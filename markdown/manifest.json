@@ -2,5 +2,5 @@
   "use_pretest": false,
   "noi_style": true,
   "file_io": true,
-  "target": "typst"
+  "target": "markdown"
 }
