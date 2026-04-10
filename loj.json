@@ -4,5 +4,7 @@
   "file_io": true,
   "target": "markdown",
   "filelist": {},
-  "processor": []
+  "processor": [
+    "loj_table"
+  ]
 }

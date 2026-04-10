@@ -20,5 +20,6 @@
     "fonts/lmroman17-regular.otf": "ed048c80fb4b67663b80899b89fe5fba17d7442e1286d61fd08fe5689c6b7c3c",
     "fonts/simhei.ttf": "aa4560dd8fe5645745fed3ffa301c3ca4d6c03cbd738145b613303961ba733b8",
     "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06"
-  }
+  },
+  "processor": []
 }

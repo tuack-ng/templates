@@ -4,5 +4,8 @@
   "file_io": true,
   "target": "markdown",
   "filelist": {},
-  "processor": []
+  "processor": [
+    "uoj_title",
+    "html_table"
+  ]
 }
