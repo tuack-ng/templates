@@ -2,24 +2,28 @@
 
 #let data = json("data.json")
 #let (problems,) = data
-#let time = (
-  start: datetime(
-    year: data.date.start.at(0),
-    month: data.date.start.at(1),
-    day: data.date.start.at(2),
-    hour: data.date.start.at(3),
-    minute: data.date.start.at(4),
-    second: data.date.start.at(5),
-  ),
-  end: datetime(
-    year: data.date.end.at(0),
-    month: data.date.end.at(1),
-    day: data.date.end.at(2),
-    hour: data.date.end.at(3),
-    minute: data.date.end.at(4),
-    second: data.date.end.at(5),
-  ),
-)
+#let time = if data.date != none {
+  (
+    start: datetime(
+      year: data.date.start.at(0),
+      month: data.date.start.at(1),
+      day: data.date.start.at(2),
+      hour: data.date.start.at(3),
+      minute: data.date.start.at(4),
+      second: data.date.start.at(5),
+    ),
+    end: datetime(
+      year: data.date.end.at(0),
+      month: data.date.end.at(1),
+      day: data.date.end.at(2),
+      hour: data.date.end.at(3),
+      minute: data.date.end.at(4),
+      second: data.date.end.at(5),
+    ),
+  )
+} else {
+  none
+}
 
 #import "@preview/oxifmt:1.0.0": strfmt
 
