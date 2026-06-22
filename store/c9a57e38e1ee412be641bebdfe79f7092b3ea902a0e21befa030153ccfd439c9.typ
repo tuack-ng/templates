@@ -261,49 +261,6 @@
   }
 ]
 
-#figure(table(
-  columns: (
-    if problems.len() >= 4 { 22% } else { 1fr },
-    ..for _ in range(0, problems.len()) { (1fr,) },
-  ),
-  align: left + bottom,
-  [题目名称],
-  ..for i in problems { (i.title,) },
-  [题目类型],
-  ..for i in problems { (i.type,) },
-  ..if data.noi_style {
-    (
-      [目录],
-      ..for i in problems { (raw(i.dir),) },
-      [可执行文件名],
-      ..for i in problems { (raw(i.exec),) },
-    )
-  },
-  ..if data.file_io {
-    (
-      [输入文件名],
-      ..for i in problems { (raw(i.input),) },
-      [输出文件名],
-      ..for i in problems { (raw(i.output),) },
-    )
-  },
-  [每个测试点时限],
-  ..for i in problems { (i.time_limit,) },
-  [内存限制],
-  ..for i in problems { (i.memory_limit,) },
-  if data.noi_style { [测试点数目] } else { [子任务数目] },
-  ..for i in problems { (i.testcase,) },
-  ..if data.noi_style {
-    (
-      [测试点是否等分 ],
-      ..for i in problems { (i.point_equal,) },
-    )
-  },
-  ..if data.use_pretest {
-    ([预测试点数目], ..for i in problems { (i.pretestcase,) })
-  },
-))
-
 #let calc_language_name_content(c) = {
   let w = 36pt
   if measure(c).width <= w {
@@ -311,25 +268,89 @@
   } else { c }
 }
 
-#if data.noi_style {
+#let render-meta-table(chunk) = {
+  figure(table(
+    columns: (
+      if chunk.len() >= 4 { 22% } else { 1fr },
+      ..for _ in range(0, chunk.len()) { (1fr,) },
+    ),
+    align: left + bottom,
+    [题目名称],
+    ..for i in chunk { (i.title,) },
+    [题目类型],
+    ..for i in chunk { (i.type,) },
+    ..if data.noi_style {
+      (
+        [目录],
+        ..for i in chunk { (raw(i.dir),) },
+        [可执行文件名],
+        ..for i in chunk { (raw(i.exec),) },
+      )
+    },
+    ..if data.file_io {
+      (
+        [输入文件名],
+        ..for i in chunk { (raw(i.input),) },
+        [输出文件名],
+        ..for i in chunk { (raw(i.output),) },
+      )
+    },
+    [每个测试点时限],
+    ..for i in chunk { (i.time_limit,) },
+    [内存限制],
+    ..for i in chunk { (i.memory_limit,) },
+    if data.noi_style { [测试点数目] } else { [子任务数目] },
+    ..for i in chunk { (i.testcase,) },
+    ..if data.noi_style {
+      (
+        [测试点是否等分 ],
+        ..for i in chunk { (i.point_equal,) },
+      )
+    },
+    ..if data.use_pretest {
+      ([预测试点数目], ..for i in chunk { (i.pretestcase,) })
+    },
+  ))
+}
+
+#let render-submit-filename-table(chunk) = {
   [
     提交源程序文件名
     #figure(table(
       columns: (
-        if problems.len() >= 4 { 22% } else { 1fr },
-        ..for _ in range(0, problems.len()) { (1fr,) },
+        if chunk.len() >= 4 { 22% } else { 1fr },
+        ..for _ in range(0, chunk.len()) { (1fr,) },
       ),
       align: left + bottom,
       ..for i in range(0, data.support_languages.len()) {
         (
           [对于#context calc_language_name_content(data.support_languages.at(i).name)语言],
-          ..for j in problems {
+          ..for j in chunk {
             (raw(j.submit_filename.at(i)),)
           },
         )
       }
     ))
   ]
+}
+
+#let problems-chunks = {
+  let chunks = ()
+  let i = 0
+  while i < problems.len() {
+    chunks.push(problems.slice(i, calc.min(i + 4, problems.len())))
+    i += 4
+  }
+  chunks
+}
+
+// 每四道题一个表格
+// 局限性：可能啥时候四个也超（TODO，也许哪一天可以配置）
+#for chunk in problems-chunks {
+  render-meta-table(chunk)
+  if data.noi_style {
+    render-submit-filename-table(chunk)
+  }
 }
 
 编译选项
