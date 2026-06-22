@@ -1,4 +1,4 @@
-#import "@preview/mitex:0.2.5": mi
+#import "@preview/mitex:0.2.7": mi
 
 #let thematic-break = line(
   length: 100%,
