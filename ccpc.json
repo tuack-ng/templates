@@ -4,7 +4,7 @@
   "file_io": false,
   "target": "typst",
   "filelist": {
-    "main.typ": "dadebf37e6bf20d194d293bbace455b5a4a5ec092cc42f764b2510aadd5cea22.typ",
+    "main.typ": "b7ab320fe04799a6be7ff850f042540f716be84b6461d7329e1dc928d6441db8.typ",
     "utils.typ": "89c0f8b21f68c77ace4d3677f736c3c6fbdaa795292aef8b23033504646fb0c3.typ",
     "ccpc.png": "1974b357531f355475143303a9189eac1ce297d767ff7fdd355d40b96027e7b4.png",
     "fonts/SimSun.ttf": "ca4da082cd970f0c8abaa79f213ddcbc475f7b5afabcb81b385998f9ebfbb53f.ttf",
@@ -19,7 +19,8 @@
     "fonts/lmroman12-regular.otf": "e6be218ae83e61aa8a29990d3cdc401c678c1962188cb9a4a8b6359e4f5e5870.otf",
     "fonts/lmroman17-regular.otf": "ed048c80fb4b67663b80899b89fe5fba17d7442e1286d61fd08fe5689c6b7c3c.otf",
     "fonts/simhei.ttf": "aa4560dd8fe5645745fed3ffa301c3ca4d6c03cbd738145b613303961ba733b8.ttf",
-    "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06.ttf"
+    "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06.ttf",
+    "fonts/MathDoubleStruck.otf": "f7f7cdd6a33305a3f8e1c95214738e84601b6cdb5d5f8d3c1ead1ab25081133f.otf"
   },
   "processor": []
 }

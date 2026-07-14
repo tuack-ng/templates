@@ -214,7 +214,7 @@
 }
 #set figure(numbering: none)
 
-#show math.equation: set text(font: "Latin Modern Math")
+#show math.equation: set text(font: ("Math DoubleStruck", "Latin Modern Math"))
 
 #set table(stroke: 0.3pt, inset: (top: 4.5pt, bottom: 4.5pt))
 
