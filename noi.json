@@ -4,7 +4,7 @@
   "file_io": true,
   "target": "typst",
   "filelist": {
-    "main.typ": "28f758ca324109b4d9c5bade2a36c244af279422dd99a5252ebc84405af32003.typ",
+    "main.typ": "17a22ea08066c7ba1d7e284a19d939b11d8c932ea17966f90b347342f3539c0e.typ",
     "utils.typ": "89c0f8b21f68c77ace4d3677f736c3c6fbdaa795292aef8b23033504646fb0c3.typ",
     "fonts/SimSun.ttf": "ca4da082cd970f0c8abaa79f213ddcbc475f7b5afabcb81b385998f9ebfbb53f.ttf",
     "fonts/consola.ttf": "c6e6ce8119fdd47ec6a5449a08e2d2ad7f41ea03143aae193068ed9fa58eaebc.ttf",
@@ -19,7 +19,7 @@
     "fonts/lmroman17-regular.otf": "ed048c80fb4b67663b80899b89fe5fba17d7442e1286d61fd08fe5689c6b7c3c.otf",
     "fonts/simhei.ttf": "aa4560dd8fe5645745fed3ffa301c3ca4d6c03cbd738145b613303961ba733b8.ttf",
     "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06.ttf",
-    "fonts/MathDoubleStruck.otf": "66cb11261ed919abe77701dd73e1fa309b26768885399051cf8a4c077737ccbf.otf"
+    "fonts/TuackNGSymbols.otf": "ddd3150841426df8998d6c2a77d00567994d6bc43387f3c48bcb7e97122cfeca.otf"
   },
   "processor": []
 }
