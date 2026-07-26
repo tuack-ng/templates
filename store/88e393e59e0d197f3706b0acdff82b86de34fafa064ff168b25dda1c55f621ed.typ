@@ -159,6 +159,12 @@
   set heading(bookmarked: true)
   pad(left: 1.5em, top: 1em, bottom: .5em, [【] + it.body + [】])
 }
+#show heading.where(level: 3): it => {
+  set text(size: 12pt, weight: "regular", font: ("Latin Modern Roman 12", "SimHei"))
+  set heading(bookmarked: true)
+  pad(left: 2em, bottom: .5em, it.body)
+}
+
 #show emph: it => text(font: "Latin Modern Roman", style: "italic", weight: "bold", it.body)
 #show raw.where(block: false): it => text(font: ("Consolas", "SimSun"), size: 12pt, it)
 #show raw.where(block: true): it => {
@@ -219,22 +225,19 @@
 #set table(stroke: 0.3pt, inset: (top: 4.5pt, bottom: 4.5pt))
 
 #align(center)[
-
-  #image("ccpc.png")
-
   #if data.title != "" {
-    text(size: 36pt, weight: "bold", font: ("Latin Modern Roman 12", "SimHei"), data.title)
+    text(size: 22pt, weight: "bold", font: ("Latin Modern Roman 12", "SimHei"), data.title)
   }
 
   #if data.subtitle != "" {
-    text(size: 36pt, font: ("Latin Modern Roman 17", "SimHei"), data.subtitle)
+    text(size: 22pt, font: ("Latin Modern Roman 17", "SimHei"), data.subtitle)
   }
 
-  #if data.dayname != "" { text(size: 42pt, font: ("Latin Modern Roman 17", "KaiTi"), data.dayname) }
+  #if data.dayname != "" { text(size: 22pt, font: ("Latin Modern Roman 17", "KaiTi"), data.dayname) }
 
   #if time != none {
     text(
-      size: 16pt,
+      size: 15pt,
       font: ("Latin Modern Roman 17", "SimHei"),
       "时间："
         + {
@@ -264,49 +267,6 @@
   }
 ]
 
-// #figure(table(
-//   columns: (
-//     if problems.len() >= 4 { 22% } else { 1fr },
-//     ..for _ in range(0, problems.len()) { (1fr,) },
-//   ),
-//   align: left + bottom,
-//   [题目名称],
-//   ..for i in problems { (i.title,) },
-//   [题目类型],
-//   ..for i in problems { (i.type,) },
-//   ..if data.noi_style {
-//     (
-//       [目录],
-//       ..for i in problems { (raw(i.dir),) },
-//       [可执行文件名],
-//       ..for i in problems { (raw(i.exec),) },
-//     )
-//   },
-//   ..if data.file_io {
-//     (
-//       [输入文件名],
-//       ..for i in problems { (raw(i.input),) },
-//       [输出文件名],
-//       ..for i in problems { (raw(i.output),) },
-//     )
-//   },
-//   [每个测试点时限],
-//   ..for i in problems { (i.time_limit,) },
-//   [内存限制],
-//   ..for i in problems { (i.memory_limit,) },
-//   if data.noi_style { [测试点数目] } else { [子任务数目] },
-//   ..for i in problems { (i.testcase,) },
-//   ..if data.noi_style {
-//     (
-//       [测试点是否等分 ],
-//       ..for i in problems { (i.point_equal,) },
-//     )
-//   },
-//   ..if data.use_pretest {
-//     ([预测试点数目], ..for i in problems { (i.pretestcase,) })
-//   },
-// ))
-
 #let calc_language_name_content(c) = {
   let w = 36pt
   if measure(c).width <= w {
@@ -314,41 +274,105 @@
   } else { c }
 }
 
-// #if data.noi_style {
-//   [
-//     提交源程序文件名
-//     #figure(table(
-//       columns: (
-//         if problems.len() >= 4 { 22% } else { 1fr },
-//         ..for _ in range(0, problems.len()) { (1fr,) },
-//       ),
-//       align: left + bottom,
-//       ..for i in range(0, data.support_languages.len()) {
-//         (
-//           [对于#context calc_language_name_content(data.support_languages.at(i).name)语言],
-//           ..for j in problems {
-//             (raw(j.submit_filename.at(i)),)
-//           },
-//         )
-//       }
-//     ))
-//   ]
-// }
+#let render-meta-table(chunk) = {
+  figure(table(
+    columns: (
+      if chunk.len() >= 4 { 22% } else { 1fr },
+      ..for _ in range(0, chunk.len()) { (1fr,) },
+    ),
+    align: left + bottom,
+    [题目名称],
+    ..for i in chunk { (i.title,) },
+    [题目类型],
+    ..for i in chunk { (i.type,) },
+    ..if data.noi_style {
+      (
+        [目录],
+        ..for i in chunk { (raw(i.dir),) },
+        [可执行文件名],
+        ..for i in chunk { (raw(i.exec),) },
+      )
+    },
+    ..if data.file_io {
+      (
+        [输入文件名],
+        ..for i in chunk { (raw(i.input),) },
+        [输出文件名],
+        ..for i in chunk { (raw(i.output),) },
+      )
+    },
+    [每个测试点时限],
+    ..for i in chunk { (i.time_limit,) },
+    [内存限制],
+    ..for i in chunk { (i.memory_limit,) },
+    if data.noi_style { [测试点数目] } else { [子任务数目] },
+    ..for i in chunk { (i.testcase,) },
+    ..if data.noi_style {
+      (
+        [测试点是否等分 ],
+        ..for i in chunk { (i.point_equal,) },
+      )
+    },
+    ..if data.use_pretest {
+      ([预测试点数目], ..for i in chunk { (i.pretestcase,) })
+    },
+  ))
+}
 
-// 编译选项
-// #figure(table(
-//   columns: (
-//     if problems.len() >= 4 { 22% } else { 1fr },
-//     ..for _ in range(0, problems.len()) { (1fr,) },
-//   ),
-//   align: (left + bottom, center + bottom),
-//   ..for lang in data.support_languages {
-//     (
-//       [对于#context calc_language_name_content(lang.name)语言],
-//       ..if (problems.len() > 0) { (table.cell(colspan: problems.len(), raw(lang.compile_options)),) },
-//     )
-//   },
-// ))
+#let render-submit-filename-table(chunk) = {
+  [
+    提交源程序文件名
+    #figure(table(
+      columns: (
+        if chunk.len() >= 4 { 22% } else { 1fr },
+        ..for _ in range(0, chunk.len()) { (1fr,) },
+      ),
+      align: left + bottom,
+      ..for i in range(0, data.support_languages.len()) {
+        (
+          [对于#context calc_language_name_content(data.support_languages.at(i).name)语言],
+          ..for j in chunk {
+            (raw(j.submit_filename.at(i)),)
+          },
+        )
+      }
+    ))
+  ]
+}
+
+#let problems-chunks = {
+  let chunks = ()
+  let i = 0
+  while i < problems.len() {
+    chunks.push(problems.slice(i, calc.min(i + 4, problems.len())))
+    i += 4
+  }
+  chunks
+}
+
+// 每四道题一个表格
+// 局限性：可能啥时候四个也超（TODO，也许哪一天可以配置）
+#for chunk in problems-chunks {
+  render-meta-table(chunk)
+  if data.noi_style {
+    render-submit-filename-table(chunk)
+  }
+}
+
+编译选项
+#figure(table(
+  columns: (
+    if problems.len() >= 4 { 22% } else { 1fr },
+    ..for _ in range(0, problems.len()) { (1fr,) },
+  ),
+  align: (left + bottom, center + bottom),
+  ..for lang in data.support_languages {
+    (
+      [对于#context calc_language_name_content(lang.name)语言],
+      ..if (problems.len() > 0) { (table.cell(colspan: problems.len(), raw(lang.compile_options)),) },
+    )
+  },
+))
 
 
 #set table(
@@ -361,39 +385,7 @@
   align: center + horizon,
 )
 
-// #include "precaution.typ"
-
-// #set heading(numbering: "1.")
-// 基础目录设置
-#set outline(
-  title: align(left, text(size: 14pt, "目  录")), // 或使用变量: [#thecontent]
-  depth: 1,
-  indent: auto,
-)
-
-#show outline.entry.where(level: 1): it => {
-  v(24pt, weak: true)
-
-  link(
-    it.element.location(),
-    text(
-      font: ("Latin Modern Roman 12", "SimHei"),
-      size: 12pt,
-      weight: "bold",
-      fill: rgb("#0000FF"),
-      it.body(),
-    ),
-  )
-  h(1fr)
-  text(
-    font: ("Latin Modern Roman 12", "SimHei"),
-    size: 12pt,
-    weight: "bold",
-    it.page(),
-  )
-}
-
-#outline(depth: 1, indent: 4pt)
+#include "precaution.typ"
 
 #let current-problem-idx = counter("current-problem-idx")
 
@@ -405,35 +397,22 @@
       #text(size: 10pt, font: ("Latin Modern Roman", "SimSun"))[
         #data.title
         #data.subtitle
-        // #h(1fr)
-        // #data.dayname
-        // #prob.title（#prob.name）
+        #h(1fr)
+        #data.dayname
+        #prob.title（#prob.name）
       ]
       #v(-4pt)
       #line(length: 100%, stroke: 0.3pt)
     ]
   },
-  footer: context {
-    let now = counter(page).get().first()
-    let total = counter(page).final().first()
-    align(center)[
-      #text(
-        size: 10pt,
-      )[第 #now 页 ~~~~ 共 #link((page: total, x: 2.5cm, y: 1.5cm))[#text(fill: rgb("#0000ff"))[#total]] 页]
-    ]
-  },
+  numbering: (now, total) => [#text(
+    size: 10pt,
+  )[第 #(now) 页 ~~~~ 共 #link((page: total, x: 2.5cm, y: 1.5cm))[#text(fill: rgb("#0000ff"))[#(total)]] 页]],
 )
-
-
-#let char_shift(char, offset) = {
-  let code = sys.char-code(char) // 获取字符的 Unicode 码点
-  sys.char-from-code(code + offset) // 创建新字符
-}
 
 #for (i, p) in problems.enumerate() {
   pagebreak()
-  heading(level: 1, [#numbering("A .", i + 1) #p.title ~~/~~ #p.name])
-  [#strong[时间限制：] #p.time_limit]
+  heading(level: 1, [#p.title（#p.name）])
   include "problem-" + str(i) + ".typ"
   current-problem-idx.step()
 }
