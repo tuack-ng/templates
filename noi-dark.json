@@ -5,7 +5,6 @@
   "target": "typst",
   "filelist": {
     "fonts/SimSun.ttf": "ca4da082cd970f0c8abaa79f213ddcbc475f7b5afabcb81b385998f9ebfbb53f.ttf",
-    "fonts/TuackNGSymbols.otf": "ddd3150841426df8998d6c2a77d00567994d6bc43387f3c48bcb7e97122cfeca.otf",
     "fonts/consola.ttf": "c6e6ce8119fdd47ec6a5449a08e2d2ad7f41ea03143aae193068ed9fa58eaebc.ttf",
     "fonts/latinmodern-math.otf": "6075562b771f8b82f0c179e363389684f2dd09de30038269e2628e504bd7be0f.otf",
     "fonts/lmroman10-bold.otf": "102fe06c430a8b681b2bf6876b7cd967ae4d47b4b6b41d915eb7913b726d9fb1.otf",
@@ -18,6 +17,7 @@
     "fonts/lmroman17-regular.otf": "ed048c80fb4b67663b80899b89fe5fba17d7442e1286d61fd08fe5689c6b7c3c.otf",
     "fonts/simhei.ttf": "aa4560dd8fe5645745fed3ffa301c3ca4d6c03cbd738145b613303961ba733b8.ttf",
     "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06.ttf",
+    "fonts/TuackNGSymbols.otf": "d13a99ef2f79f9120ab21daa91bccbef1314d0031c41443b85448ebd41ee13c0.otf",
     "main.typ": "9f743ea60fb6f715e3de21c49dd13749b22180deb72945f26b05a4c59164654f.typ",
     "utils.typ": "89c0f8b21f68c77ace4d3677f736c3c6fbdaa795292aef8b23033504646fb0c3.typ"
   },
