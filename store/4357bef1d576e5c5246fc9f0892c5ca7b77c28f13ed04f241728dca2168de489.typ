@@ -137,17 +137,20 @@
   )
 }
 
-#set raw(tab-size: 4)
+#let in-raw = state("in-raw", false)
+#set raw(tab-size: 4, theme: "./tuackCodeTheme.tmTheme")
 #show strong: st => {
-  set text(font: ("Latin Modern Roman 12", "SimHei"))
-  show regex("\p{sc=Hani}+"): s => {
-    underline(s, offset: 3pt, stroke: (
-      cap: "round",
-      thickness: 0.1em,
-      dash: (array: (0em, 1em), phase: 0.5em),
-    ))
+  if in-raw.get() { st } else {
+    set text(font: ("Latin Modern Roman 12", "SimHei"))
+    show regex("\p{sc=Hani}+"): s => {
+      underline(s, offset: 3pt, stroke: (
+        cap: "round",
+        thickness: 0.1em,
+        dash: (array: (0em, 1em), phase: 0.5em),
+      ))
+    }
+    st
   }
-  st
 }
 #show heading.where(level: 1): it => {
   set text(size: 18pt, weight: "regular", font: ("Latin Modern Roman 17", "SimHei"))
@@ -165,54 +168,59 @@
   pad(left: 2em, bottom: .5em, it.body)
 }
 
-#show emph: it => text(font: "Latin Modern Roman", style: "italic", weight: "bold", it.body)
-#show raw.where(block: false): it => text(font: ("Consolas", "SimSun"), size: 12pt, it)
-#show raw.where(block: true): it => {
-  set text(font: ("Consolas", "SimSun"), size: 12pt)
-  set par(leading: 0pt, spacing: 0pt)
-  set block(above: 10pt, below: 10pt)
-  show raw.line: jt => {
-    let stroke = (
-      left: 0.4pt + rgb("#0000ff"),
-      right: 0.4pt + rgb("#0000ff"),
-    )
-    let inset = (
-      top: 8.5pt / 2,
-      bottom: 8.5pt / 2,
-      left: 3pt,
-      right: 3pt,
-    )
-    if jt.number == 1 {
-      stroke.top = 0.4pt + rgb("#0000ff")
-      inset.top = 6pt
-    }
-    if jt.number == jt.count {
-      stroke.bottom = 0.4pt + rgb("#0000ff")
-      inset.bottom = 9pt
-    }
-    context (
-      box(move(
-        dx: 3pt + 6pt,
-        box(
-          box(
-            grid(
-              columns: (0pt, 0pt, 100% - 6pt),
-              align: (bottom, bottom, bottom),
-              move(
-                dx: -9pt - measure([#jt.number]).width,
-                text(fill: rgb("#808080"), size: 10pt, [#jt.number]),
-              ),
-              cjk-align-mark,
-              jt.body,
-            ),
+#show emph: it => {
+  if in-raw.get() { it } else {
+    set text(font: "Latin Modern Roman", weight: "bold")
+    it
+  }
+}
+#show link: set text(fill: rgb("#ed028c"))
+#show raw: it => {
+  in-raw.update(true)
+  let mono-font = ("Consolas", "SimSun")
+  set text(font: mono-font, size: 12pt)
+  show strong: it => text(it.body, weight: "medium")
+  if not it.block { it } else {
+    let border = 0.4pt + rgb("#0000ff")
+    show raw.line: jt => {
+      block(
+        place(
+          dx: -9pt - measure([#jt.number]).width,
+          text(fill: rgb("#808080"), size: 10pt, [#jt.number]) + cjk-align-mark,
+        )
+          + par(
+            leading: 0.65em,
+            spacing: 0em,
+            first-line-indent: 0em,
+            hanging-indent: 1.5em,
+            cjk-align-mark + jt,
           ),
-          stroke: stroke,
-          inset: inset,
-        ),
-      ))
+      )
+    }
+    block(
+      inset: (left: 9pt),
+      block(
+        width: 100% + 3pt,
+        stroke: (x: border),
+        inset: (x: 3pt, top: 6pt, bottom: 9pt),
+        place(
+          dx: -3pt,
+          dy: -6pt,
+          line(stroke: border, length: 100% + 3pt * 2),
+        )
+          + {
+            set par(spacing: 0pt)
+            it
+          }
+          + place(
+            dx: -3pt,
+            dy: 9pt,
+            line(stroke: border, length: 100% + 3pt * 2),
+          ),
+      ),
     )
   }
-  block(it)
+  in-raw.update(false)
 }
 
 #show figure: it => {

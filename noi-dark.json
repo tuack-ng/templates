@@ -18,8 +18,9 @@
     "fonts/simhei.ttf": "aa4560dd8fe5645745fed3ffa301c3ca4d6c03cbd738145b613303961ba733b8.ttf",
     "fonts/simkai.ttf": "9dd76f7ab430edd091db24c3f18e71410325c1414141aad5fe67947873ffba06.ttf",
     "fonts/TuackNGSymbols.otf": "d13a99ef2f79f9120ab21daa91bccbef1314d0031c41443b85448ebd41ee13c0.otf",
-    "main.typ": "9f743ea60fb6f715e3de21c49dd13749b22180deb72945f26b05a4c59164654f.typ",
-    "utils.typ": "89c0f8b21f68c77ace4d3677f736c3c6fbdaa795292aef8b23033504646fb0c3.typ"
+    "main.typ": "4ec15f3e6233e7589493c94817934bfdfb1970b4d6cf6e12e3a25b4b48e6b5ab.typ",
+    "utils.typ": "89c0f8b21f68c77ace4d3677f736c3c6fbdaa795292aef8b23033504646fb0c3.typ",
+    "tuackCodeTheme.tmTheme": "bd526ede31675317695eb8f0d5bd24aa5a1f134c92ffed40f59a35791c90a7c0.tmTheme"
   },
   "processor": []
 }
